@@ -10,10 +10,20 @@ import Foundation
 struct Order {
     let price: Double
     let quantity: Int
+    let taxRate: Double
 }
 
 class OrderCalculator {
-    func calculateTotalPrice(for order: Order) -> Double {
-        return order.price * Double(order.quantity)
+    func calculateSt(for or: Order) -> Double {
+        return or.price * Double(or.quantity)
+    }
+
+    func calculatetx(for or: Order) -> Double {
+        return calculateSt(for: or) * or.taxRate
+    }
+
+    func calculateTP(for or: Order) -> Double {
+        return calculateSt(for: or) + calculatetx(for: or)
     }
 }
+
